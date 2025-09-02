@@ -1,0 +1,35 @@
+name: Automated Release
+
+on:
+  push:
+    branches: [ master ] # Запускаем только для коммитов в master
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Важно! Чтобы standard-version видел всю историю коммитов
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci # "Чистая" установка из package-lock.json
+
+      - name: Run Standard Version
+        run: npx standard-version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Даем права на запись
+
+      - name: Push changes and tags
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git push --follow-tags origin master
