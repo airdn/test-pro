@@ -30,7 +30,7 @@ jobs:
         run: npm ci # "Чистая" установка из package-lock.json
 
       - name: Run Standard Version
-        run: npx standard-version
+        run: npx standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip actions]'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Даем права на запись
 
