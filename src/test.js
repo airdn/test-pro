@@ -7,6 +7,7 @@ function testGittyAn() {
     alert('new alert!');
     alert('new alert test!');
     alert('new alert test! 2');
+    alert('new alert test! 2');
 }
 
 // комментарий 1
