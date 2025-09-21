@@ -2,39 +2,36 @@ name: Automated Release
 
 on:
   push:
-    branches: [ master ] # Запускаем только для коммитов в master
+    branches: [ master ]
+    paths-ignore:
+      - 'package.json'
+      - 'package-lock.json'
+      - 'CHANGELOG.md'
 
 jobs:
   release:
-    name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Важно! Чтобы standard-version видел всю историю коммитов
-          ssh-key: ${{ secrets.DEPLOY_KEY }}
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
-          cache: 'npm'
 
-      - name: Configure Git
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create Release
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Install dependencies
-        run: npm ci # "Чистая" установка из package-lock.json
-
-      - name: Run Standard Version
-        run: |
           npx standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Даем права на запись
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push changes and tags
-        run: |
-          git push --follow-tags origin master
+      - name: Push changes
+        run: git push --follow-tags origin master
