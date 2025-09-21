@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/airdn/test-pro/compare/v1.1.0...v1.1.1) (2025-09-21)
+
+
+### Bug Fixes
+
+* automated version ([aaf29dd](https://github.com/airdn/test-pro/commit/aaf29dd561d53a196de6653f17e12b21957fe00c))
+* update automated release ([972a419](https://github.com/airdn/test-pro/commit/972a419f3c5fc3a82e7893e13180db86e1d4b076))
+
 ## [1.1.0](https://github.com/airdn/test-pro/compare/v1.0.32...v1.1.0) (2025-09-21)
 
 
