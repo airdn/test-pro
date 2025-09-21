@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/airdn/test-pro/compare/v1.1.1...v1.2.0) (2025-09-21)
+
+
+### Features
+
+* test.js ([b06a653](https://github.com/airdn/test-pro/commit/b06a65315e09f505fdb4dbc0f3cf69edfd468a00))
+
 ### [1.1.1](https://github.com/airdn/test-pro/compare/v1.1.0...v1.1.1) (2025-09-21)
 
 
